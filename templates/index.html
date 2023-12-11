@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!--====== Title ======-->
+    <title>VAC</title>
+
+    <!--====== Favicon Icon ======-->
+    <link
+      rel="shortcut icon"
+      href="/static/images/favicon.svg"
+      type="image/svg"
+    />
+
+    <link rel="stylesheet" href="/static/css/reset.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+
+    <!--====== Line Icons css ======-->
+    <link rel="stylesheet" href="/static/css/lineicons.css" />
+  </head>
+
+  <body class="bg-light">
+    <!--====== NAVBAR NINE PART START ======-->
+
+    <nav class="navbar navbar-dark navbar-expand-sm bg-dark fixed-top">
+      <div class="container">
+        <a href="/" class="navbar-brand">
+          <i class="fas fa-blog"></i> &nbsp; Voice Authenticity Checker
+        </a>
+      </div>
+    </nav>
+
+    <!-- Start header Area -->
+    <div class="container mt-5 pt-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-12 col-12">
+          <div class="header-content shadow p-3 mb-5 bg-white rounded">
+            <p>
+              Upload an audio file to check whether the audio is genuine or a
+              spoof:
+            </p>
+
+            <form id="upload-form" method="post" enctype="multipart/form-data">
+              <input
+                type="file"
+                name="image"
+                id="image-input"
+                class="form-control-file"
+              />
+            </form>
+
+            <div style="padding: 15px">
+              <audio controls id="audio-container">
+                <!-- <source id="audio-src" src="/static/audio/D_1001447.wav"  type="audio/mpeg">
+                  Your browser does not support the audio element. -->
+              </audio>
+            </div>
+            <div
+              class="glightbox video-button"
+              id="predict-btn"
+              style="padding: 20px"
+            >
+              <span class="btn icon-btn bg-dark rounded-circle">
+                <i class="lni lni-play" style="color: white"></i>
+              </span>
+              <span class="text">Check Now</span>
+            </div>
+
+            <div id="container-record">
+              <div class="audio-recording-container">
+                <h1 class="title">Or record voice</h1>
+                <i
+                  class="start-recording-button fa fa-microphone"
+                  aria-hidden="true"
+                ></i>
+                <div class="recording-contorl-buttons-container hide">
+                  <i
+                    class="cancel-recording-button fa fa-times-circle-o"
+                    aria-hidden="true"
+                  ></i>
+                  <div class="recording-elapsed-time">
+                    <i
+                      class="red-recording-dot fa fa-circle"
+                      aria-hidden="true"
+                    ></i>
+                    <p class="elapsed-time"></p>
+                  </div>
+                  <i
+                    class="stop-recording-button fa fa-stop-circle-o"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+                <div class="text-indication-of-audio-playing-container">
+                  <p class="text-indication-of-audio-playing hide">
+                    Audio is playing<span>.</span><span>.</span><span>.</span>
+                  </p>
+                </div>
+              </div>
+              <audio controls id="recorded-audio" class="audio-element " ></audio>
+              <div
+              class="glightbox video-button"
+             
+              style="padding: 20px"
+            >
+              <div class="overlay hide">
+                <div class="browser-not-supporting-audio-recording-box">
+                  <p>
+                    To record audio, use browsers like Chrome and Firefox that
+                    support audio recording.
+                  </p>
+                  <button type="button" class="close-browser-not-supported-box">
+                    Ok.
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+
+      
+     
+        <button  class="btn icon-btn bg-dark text-white" >
+       <span id="checkvoice">Check</span>
+       <span id="checkvoice1">Now</span>
+       
+      </div>
+
+        <!--  -->
+        <div
+          class="col-lg-6 col-md-12 col-12 shadow-lg p-3 mb-5 bg-white rounded d-flex flex-row justify-content-center align-items-center"
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <div class="header-image">
+              <img
+                id="imageWidget"
+                src="/static//images/plc2.png"
+                alt=""
+                style="width: 320px; height: 250px"
+              />
+            </div>
+            <h4 id="caption">Spectrogram</h4>
+          </div>
+        </div>
+      </div>
+
+      <div id="loading">
+        <center>
+          <div class="spinner-grow spinner-grow-sm text-success"></div>
+          <div class="spinner-grow spinner-grow-sm text-info"></div>
+          <div class="spinner-grow spinner-grow-sm text-success"></div>
+          <div class="spinner-grow spinner-grow-sm text-info"></div>
+          <div class="spinner-grow spinner-grow-sm text-success"></div>
+          <div class="spinner-grow spinner-grow-sm text-info"></div>
+          <div class="spinner-grow spinner-grow-sm text-success"></div>
+          <div class="spinner-grow spinner-grow-sm text-info"></div>
+          <div class="spinner-grow spinner-grow-sm text-success"></div>
+          <div class="spinner-grow spinner-grow-sm text-info"></div>
+          <div class="spinner-grow spinner-grow-sm text-success"></div>
+          <div class="spinner-grow spinner-grow-sm text-info"></div>
+          <div class="spinner-grow spinner-grow-sm text-success"></div>
+          <div class="spinner-grow spinner-grow-sm text-info"></div>
+        </center>
+      </div>
+      <div
+        id="result"
+        style="display: flex; justify-content: center; align-items: center"
+      ></div>
+    </div>
+    <!-- End header Area -->
+
+    <!--====== js ======-->
+    <script src="/static/js/audio-recorder.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+
+    <script>
+      const checkRecord=(id)=>{
+        
+        console.log("checking")
+        $("#loading").show();
+       let uploadedData=new FormData()
+        uploadedData.append("id",id)
+          $.ajax({
+            type: "POST",
+            url: "/predict-c",
+            data: uploadedData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            async: true,
+            success: function (data) {
+              $("#loading").hide();
+              $("#imageWidget").attr(
+                "src",
+                "http://127.0.0.1:5001/static/images/test.png"
+              );
+              $("#caption").show();
+              btn = "<button class='btn btn-success'>The Voice is Authentic</button>";
+              if (data["status"] == 0) {
+                btn =
+                  "<button class='btn btn-danger'>The Voice is Generated</button>";
+              }
+      
+              $("#result").html(btn);
+              console.log(data);
+            },
+          });
+      
+      
+      }
+      
+     
+
+
+
+// Function to check for long click
+let clickTimer;
+let longClickThreshold = 1000;
+  // Single click event handler
+  $('#checkvoice').on('click', function() {
+  checkRecord(9)
+  });
+
+  $("#checkvoice1").on('click',function(){
+    checkRecord(4)
+  });
+
+
+    </script>
+  </body>
+</html>
